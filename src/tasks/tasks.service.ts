@@ -5,7 +5,14 @@ import { CreateTaskDto } from './dto/create-task.dto';
 
 @Injectable()
 export class TasksService {
-  private tasks: Task[] = [];
+  private tasks: Task[] = [
+    {
+      description: 'A Hello World tale',
+      id: 'ef607900-ae82-11ea-bcfc-2bf91a1b69ff',
+      status: TaskStatus.OPEN,
+      title: 'Hello World',
+    },
+  ];
 
   getAll(): Task[] {
     return this.tasks;
@@ -25,6 +32,12 @@ export class TasksService {
     };
     console.log(task);
     this.tasks.push(task);
+    return task;
+  }
+
+  updateById(id: string, status: TaskStatus): Task {
+    const task = this.getById(id);
+    task.status = status;
     return task;
   }
 
