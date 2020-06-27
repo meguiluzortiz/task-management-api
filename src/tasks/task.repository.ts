@@ -25,7 +25,7 @@ export class TaskRepository extends Repository<Task> {
     }
 
     try {
-      const tasks = query.getMany();
+      const tasks = await query.getMany();
       return tasks;
     } catch (error) {
       this.logger.error(
@@ -39,7 +39,7 @@ export class TaskRepository extends Repository<Task> {
   async createEntity(dto: CreateTaskDto, user: User): Promise<Task> {
     const { title, description } = dto;
 
-    const task = new Task();
+    const task = this.create();
     task.title = title;
     task.description = description;
     task.status = TaskStatus.OPEN;

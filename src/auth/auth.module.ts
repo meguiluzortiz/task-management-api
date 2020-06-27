@@ -7,8 +7,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import * as config from 'config';
-import { ConfigKeys } from 'config/config-keys.enum';
-import { JwtConfig } from 'config/config.interfaces';
+import { ConfigKeys } from '../../config/config-keys.enum';
+import { JwtConfig } from '../../config/config.interfaces';
 
 const jwtConfig = config.get<JwtConfig>(ConfigKeys.JWT);
 

@@ -7,8 +7,8 @@ import { UserRepository } from './user.repository';
 import { User } from './user.entity';
 
 import * as config from 'config';
-import { ConfigKeys } from 'config/config-keys.enum';
-import { JwtConfig } from 'config/config.interfaces';
+import { ConfigKeys } from '../../config/config-keys.enum';
+import { JwtConfig } from '../../config/config.interfaces';
 
 const jwtConfig = config.get<JwtConfig>(ConfigKeys.JWT);
 
