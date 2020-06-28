@@ -2,8 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
 import * as config from 'config';
-import { ServerConfig } from 'config/config.interfaces';
-import { ConfigKeys } from 'config/config-keys.enum';
+import { ServerConfig } from './config/config.interfaces';
+import { ConfigKeys } from './config/config-keys.enum';
 
 async function bootstrap() {
   const logger = new Logger('bootstrap');

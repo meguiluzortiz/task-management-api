@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as config from 'config';
-import { ConfigKeys } from '../../config/config-keys.enum';
-import { DatabaseConfig } from '../../config/config.interfaces';
+import { ConfigKeys } from './config-keys.enum';
+import { DatabaseConfig } from './config.interfaces';
 import { Logger } from '@nestjs/common';
 
 const dbConfig = config.get<DatabaseConfig>(ConfigKeys.DB);
