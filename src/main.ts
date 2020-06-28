@@ -8,9 +8,13 @@ import { ConfigKeys } from 'config/config-keys.enum';
 async function bootstrap() {
   const logger = new Logger('bootstrap');
   const app = await NestFactory.create(AppModule);
+  const serverConfig = config.get<ServerConfig>(ConfigKeys.SERVER);
 
   if (process.env.NODE_ENV === 'development') {
     app.enableCors();
+  } else {
+    app.enableCors({ origin: serverConfig.origin });
+    logger.log(`Accepting requests from origin "${serverConfig.origin}"`);
   }
 
   const serverConfig = config.get<ServerConfig>(ConfigKeys.SERVER);
