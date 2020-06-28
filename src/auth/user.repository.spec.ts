@@ -3,11 +3,12 @@ import { UserRepository } from './user.repository';
 import { ErrorCode } from './error-code.enum';
 import { ConflictException, InternalServerErrorException } from '@nestjs/common';
 import { User } from './user.entity';
-import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 
-const mockCredentialsDto = { username: 'TestUsername', password: 'TestPassword' };
+const bcrypt = bcryptjs as any;
 
 describe('UserRepository', () => {
+  const mockCredentialsDto = { username: 'TestUsername', password: 'TestPassword' };
   let userRepository: UserRepository;
 
   beforeEach(async () => {
@@ -77,7 +78,7 @@ describe('UserRepository', () => {
     beforeEach(() => {
       jest.clearAllMocks();
     });
-    it('calls bcrypt.hash to generate a hash', async () => {
+    it('calls bcryptjs.hash to generate a hash', async () => {
       const hash = jest.spyOn(bcrypt, 'hash').mockResolvedValue('testHash');
       expect(hash).not.toHaveBeenCalled();
       const result = await userRepository['hashPassword']('testPassword', 'testSalt');

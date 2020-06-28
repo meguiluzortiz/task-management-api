@@ -1,5 +1,5 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 import { Task } from '../tasks/task.entity';
 
 @Entity()
@@ -22,6 +22,6 @@ export class User extends BaseEntity {
   tasks: Task[];
 
   validatePassword(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+    return bcryptjs.compare(password, this.password);
   }
 }

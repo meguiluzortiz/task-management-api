@@ -1,6 +1,6 @@
 import { Repository, EntityRepository } from 'typeorm';
 import { ConflictException, InternalServerErrorException } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 import { User } from './user.entity';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { ErrorCode } from './error-code.enum';
@@ -12,7 +12,7 @@ export class UserRepository extends Repository<User> {
 
     const user = this.create();
     user.username = username;
-    user.password = await this.hashPassword(password, await bcrypt.genSalt());
+    user.password = await this.hashPassword(password, await bcryptjs.genSalt());
     try {
       await user.save();
     } catch (error) {
@@ -36,6 +36,6 @@ export class UserRepository extends Repository<User> {
   }
 
   private async hashPassword(password: string, salt: string): Promise<string> {
-    return bcrypt.hash(password, salt);
+    return bcryptjs.hash(password, salt);
   }
 }
