@@ -4,9 +4,9 @@ server:
 db:
   host: 'RDS_HOSTNAME'
   port: 'RDS_PORT'
+  database: 'RDS_DB_NAME'
   username: 'RDS_USERNAME'
   password: 'RDS_PASSWORD'
-  database: 'RDS_DB_NAME'
   synchronize: 'TYPEORM_SYNC'
 
 jwt:
