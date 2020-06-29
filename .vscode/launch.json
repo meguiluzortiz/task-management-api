@@ -7,10 +7,23 @@
     {
       "type": "node",
       "request": "attach",
-      "name": "Attach Debug",
+      "name": "Attach Local Debug",
       "port": 9229,
       "restart": true,
       "stopOnEntry": false,
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach Docker Debug",
+      "remoteRoot": "/usr/src/app",
+      "localRoot": "${workspaceFolder}",
+      "protocol": "inspector",
+      "port": 9229,
+      "restart": true,
+      "stopOnEntry": false,
+      "address": "0.0.0.0",
       "skipFiles": ["<node_internals>/**"]
     }
   ]
