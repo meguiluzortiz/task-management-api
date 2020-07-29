@@ -1,0 +1,22 @@
+version: '3.4' #Minimun version supporting target property
+
+services:
+  main:
+    container_name: main
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules # Anonymous volume to prevent existing node_modules in container to be overridden
+    ports:
+      - 3000:3000
+      - 9229:9229
+    environment:
+      NODE_ENV: 'docker'
+    command: yarn start:debug
+
+networks:
+  default:
+    external:
+      name: postgres_default

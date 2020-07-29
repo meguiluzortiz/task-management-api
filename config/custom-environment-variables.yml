@@ -1,0 +1,13 @@
+server:
+  port: 'SERVER_PORT'
+
+db:
+  host: 'RDS_HOSTNAME'
+  port: 'RDS_PORT'
+  database: 'RDS_DB_NAME'
+  username: 'RDS_USERNAME'
+  password: 'RDS_PASSWORD'
+  synchronize: 'TYPEORM_SYNC'
+
+jwt:
+  secret: 'JWT_SECRET'
