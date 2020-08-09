@@ -16,6 +16,7 @@ describe('TaskRepository', () => {
     const module = await Test.createTestingModule({
       providers: [TaskRepository],
     }).compile();
+    module.useLogger(null); // disable logging
 
     taskRepository = module.get<TaskRepository>(TaskRepository);
   });

@@ -10,11 +10,7 @@ logger.log(`Database synchronize: ${dbConfig.synchronize}`);
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: dbConfig.type,
-  host: dbConfig.host,
-  port: dbConfig.port,
-  username: dbConfig.username,
-  password: dbConfig.password,
-  database: dbConfig.database,
+  url: dbConfig.url,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   synchronize: dbConfig.synchronize,
 };

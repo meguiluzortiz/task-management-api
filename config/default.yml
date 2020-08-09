@@ -3,8 +3,9 @@ server:
 
 db:
   type: 'postgres'
-  port: 5432
-  database: 'taskmanagement'
+  url: 'postgres://admin:admin@localhost:5432/taskmanagement'
+  synchronize: true
 
 jwt:
+  secret: 'secret'
   expiresIn: 3600
