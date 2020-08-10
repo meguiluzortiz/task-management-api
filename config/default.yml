@@ -1,9 +1,10 @@
 server:
-  port: 3000
+  port: 3001
+  origin: 'http://localhost:3000'
 
 db:
   type: 'postgres'
-  url: 'postgres://admin:admin@localhost:5432/taskmanagement'
+  url: 'postgres://postgres:postgres@localhost:5432/taskmanagement'
   synchronize: true
 
 jwt:

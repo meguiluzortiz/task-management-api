@@ -1,8 +1,3 @@
 db:
-  host: 'postgres'
-  username: 'admin'
-  password: 'admin'
+  url: 'postgres://postgres:postgres@db:5432/taskmanagement'
   synchronize: true
-
-jwt:
-  secret: 'secret'
