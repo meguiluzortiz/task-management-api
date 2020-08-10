@@ -15,6 +15,10 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
+
   it('/ (GET)', async done => {
     const response: request.Response = await request(app.getHttpServer()).get('/');
     expect(response.status).toBe(302);
