@@ -7,9 +7,9 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig), //
-    TasksModule,
+    TypeOrmModule.forRoot(TypeOrmConfig), //
     AuthModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [],
