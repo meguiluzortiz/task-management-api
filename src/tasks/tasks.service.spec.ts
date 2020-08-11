@@ -7,6 +7,7 @@ import { NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { Task } from './task.entity';
 import { User } from '../auth/user.entity';
+import { ParamIdDto } from './dto';
 
 describe('TaskService', () => {
   const mockUser = new User();
@@ -28,22 +29,26 @@ describe('TaskService', () => {
   describe('getAll', () => {
     it('Gets all tasks from the repository', async () => {
       const mockValue: Task[] = [];
+      const mockServiceValue = { data: [], total: 0 };
       jest.spyOn(taskRepository, 'getAll').mockResolvedValue(mockValue);
       expect(taskRepository.getAll).not.toHaveBeenCalled();
       const filters: GetAllFilterDto = { status: TaskStatus.OPEN, search: 'Some search query' };
       const result = await tasksService.getAll(filters, mockUser);
       expect(taskRepository.getAll).toHaveBeenCalled();
-      expect(result).toEqual(mockValue);
+      expect(result).toEqual(mockServiceValue);
     });
   });
 
   describe('getById', () => {
-    const id = 1;
+    const paramId: ParamIdDto = {
+      id: 1,
+    };
+    const { id } = paramId;
 
     it('call taskRepository.findOne() and sucessfully retrieve and return the task', async () => {
       const mockValue = new Task();
       jest.spyOn(taskRepository, 'findOne').mockResolvedValue(mockValue);
-      const result = await tasksService.getById(id, mockUser);
+      const result = await tasksService.getById(paramId, mockUser);
       expect(result).toEqual(mockValue);
       expect(taskRepository.findOne).toHaveBeenCalledWith({
         where: { id, userId: mockUser.id },
@@ -52,7 +57,7 @@ describe('TaskService', () => {
 
     it('throws an error as task is not found', async () => {
       jest.spyOn(taskRepository, 'findOne').mockResolvedValue(null);
-      await expect(tasksService.getById(id, mockUser)).rejects.toThrow(NotFoundException);
+      await expect(tasksService.getById(paramId, mockUser)).rejects.toThrow(NotFoundException);
     });
   });
 
@@ -91,13 +96,13 @@ describe('TaskService', () => {
     it('updates a task status', async () => {
       const save = jest.fn().mockResolvedValue(true);
       const statusValue = TaskStatus.DONE;
-      tasksService.getById = jest.fn().mockResolvedValue({
+      tasksService['getTaskById'] = jest.fn().mockResolvedValue({
         status: TaskStatus.OPEN,
         save,
       });
-      expect(tasksService.getById).not.toHaveBeenCalled();
+      expect(tasksService['getTaskById']).not.toHaveBeenCalled();
       const result = await tasksService.updateStatusById(id, statusValue, mockUser);
-      expect(tasksService.getById).toHaveBeenCalled();
+      expect(tasksService['getTaskById']).toHaveBeenCalled();
       expect(save).toHaveBeenCalled();
       expect(result.status).toEqual(statusValue);
     });
