@@ -8,8 +8,8 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(TypeOrmConfig), //
-    TasksModule,
     AuthModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [],

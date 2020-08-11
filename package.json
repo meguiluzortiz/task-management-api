@@ -14,7 +14,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug 0.0.0.0:9229 --watch",
     "start:prod": "NODE_ENV=production node dist/main",
-    "docker:clean": "docker-compose down -v && docker-compose rm -v",
+    "docker:clean": "docker-compose down -v --rmi local",
     "docker:database": "docker-compose up db",
     "docker:dev": "docker-compose up",
     "docker:debug": "docker-compose -f docker-compose.debug.yml up",
@@ -32,6 +32,7 @@
     "@nestjs/jwt": "^7.0.0",
     "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/swagger": "^4.5.12",
     "@nestjs/typeorm": "^7.1.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.3.1",
@@ -44,6 +45,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "rxjs-compat": "^6.5.5",
+    "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
