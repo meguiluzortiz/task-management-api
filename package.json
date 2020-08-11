@@ -14,7 +14,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug 0.0.0.0:9229 --watch",
     "start:prod": "NODE_ENV=production node dist/main",
-    "docker:clean": "docker-compose down -v && docker-compose rm -v",
+    "docker:clean": "docker-compose down -v --rmi local",
     "docker:database": "docker-compose up db",
     "docker:dev": "docker-compose up",
     "docker:debug": "docker-compose -f docker-compose.debug.yml up",
