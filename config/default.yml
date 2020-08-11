@@ -1,10 +1,12 @@
 server:
-  port: 3000
+  port: 3001
+  origin: 'http://localhost:3000'
 
 db:
   type: 'postgres'
-  port: 5432
-  database: 'taskmanagement'
+  url: 'postgres://postgres:postgres@localhost:5432/taskmanagement'
+  synchronize: true
 
 jwt:
+  secret: 'secret'
   expiresIn: 3600

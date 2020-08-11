@@ -14,9 +14,7 @@ services:
       - 9229:9229
     environment:
       - NODE_ENV=docker
-    command: yarn start:dev
-    depends_on:
-      - db
+    command: yarn start:debug
 
   db:
     container_name: postgres
