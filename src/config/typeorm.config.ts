@@ -8,7 +8,7 @@ const dbConfig = config.get<DatabaseConfig>(ConfigKeys.DB);
 const logger = new Logger('TypeOrmConfig');
 logger.log(`Database synchronize: ${dbConfig.synchronize}`);
 
-export const typeOrmConfig: TypeOrmModuleOptions = {
+export const TypeOrmConfig: TypeOrmModuleOptions = {
   type: dbConfig.type,
   url: dbConfig.url,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
