@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import { UserRepository } from './user.repository';
 import { User } from './user.entity';
 import { UnauthorizedException } from '@nestjs/common';
+import { ConfigService, ConfigModule } from '@nestjs/config';
 
 describe('JwtStrategy', () => {
   let jwtStrategy: JwtStrategy;
@@ -10,6 +11,7 @@ describe('JwtStrategy', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
+      imports: [ConfigModule],
       providers: [
         JwtStrategy, //
         UserRepository,
