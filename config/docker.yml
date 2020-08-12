@@ -1,3 +1,0 @@
-db:
-  url: 'postgres://postgres:postgres@db:5432/taskmanagement'
-  synchronize: true

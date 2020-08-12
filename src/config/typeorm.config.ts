@@ -1,16 +1,27 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import * as config from 'config';
-import { ConfigKeys } from './config-keys.enum';
-import { DatabaseConfig } from './config.interfaces';
 import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
-const dbConfig = config.get<DatabaseConfig>(ConfigKeys.DB);
 const logger = new Logger('TypeOrmConfig');
-logger.log(`Database synchronize: ${dbConfig.synchronize}`);
 
-export const TypeOrmConfig: TypeOrmModuleOptions = {
-  type: dbConfig.type,
-  url: dbConfig.url,
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  synchronize: dbConfig.synchronize,
+export const typeOrmConfigFactory = (configService: ConfigService): TypeOrmModuleOptions => {
+  const synchronize = configService.get('database.synchronize');
+  const ssl = configService.get('database.ssl');
+  logger.log(`Database synchronize: ${synchronize}`);
+  logger.log(`Database security ssl rejectUnauthorized: ${ssl}`);
+
+  const opts: TypeOrmModuleOptions = {
+    type: 'postgres',
+    url: configService.get('database.url'),
+    entities: [__dirname + '/../**/*.entity.{js,ts}'],
+    synchronize,
+  };
+
+  const sslOpts = Object.assign({}, opts, {
+    extra: {
+      ssl: { rejectUnauthorized: false },
+    },
+  });
+
+  return ssl ? sslOpts : opts;
 };
