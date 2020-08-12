@@ -26,6 +26,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --detectOpenHandles --config ./test/jest-e2e.json",
+    "sonar": "sonar-scanner -Dsonar.login=admin -Dsonar.password=admin",
+    "sonar:remote": "sonar-scanner -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.organization=meguiluzortiz -Dsonar.login=$SONAR_LOGIN",
     "prezip": "rimraf publish.zip",
     "zip": "bestzip publish.zip package.json Procfile config/* dist/*"
   },
@@ -69,7 +71,9 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "jest": "26.0.1",
+    "jest-sonar-reporter": "^2.0.0",
     "prettier": "^1.19.1",
+    "sonarqube-scanner": "^2.7.0",
     "supertest": "^4.0.2",
     "ts-jest": "26.1.0",
     "ts-loader": "^6.2.1",
@@ -97,6 +101,11 @@
         "lines": 80,
         "statements": -10
       }
-    }
+    },
+    "testResultsProcessor": "jest-sonar-reporter"
+  },
+  "jestSonar": {
+    "reportPath": "reports",
+    "indent": 4
   }
 }
