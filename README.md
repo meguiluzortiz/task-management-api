@@ -6,7 +6,7 @@ This project was boostrapped with [Nest CLI](https://github.com/nestjs/nest-cli)
 
 ## Live demo
 
-[Task management API](https://whispering-reef-14176.herokuapp.com/)
+[Task management API](https://meguiluzortiz-taskmanagement.herokuapp.com/)
 
 ## How to Run
 
